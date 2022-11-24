@@ -6,18 +6,20 @@ public class DiceRoll : MonoBehaviour
 {
 
     AudioSource winSound;
-
     public int diceNumber;
     //public int luckyOne = 5;
     //public int luckyTwo = 42;
     //public int luckyThree = 13;
 
-    public int[] luckyNumbers = { 5, 9, 10 , 11, 29, 32, 45, 46};
+    ParticleSystem Particles; // Particles
+
+    public int[] luckyNumbers = { 5, 9, 10, 11, 29, 32, 45, 46 };
 
     // Start is called before the first frame update
     void Start()
     {
         winSound = GetComponent<AudioSource>();
+        Particles = GetComponent<ParticleSystem>(); // Particles ziehen
     }
 
     // Update is called once per frame
@@ -34,7 +36,8 @@ public class DiceRoll : MonoBehaviour
                 if (diceNumber == luckyNumbers[i])
                 {
                     Debug.Log("Du hast gewonnen mit der Nummer: " + diceNumber + ", wuhuuu!");
-                    winSound.Play();
+                    winSound.Play(); //Win Sound spielt
+                    Particles.Play(); //Particles spielen
                 }
             else if (i == (luckyNumbers.Length - 1))
                 {
